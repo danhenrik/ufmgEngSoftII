@@ -1,3 +1,12 @@
+# Integrantes do grupo
+
+- André Luiz Morato Barreto
+- Daniel Henrique Toledo Santos
+- Lucas Mesquita Andrade
+- Victor Augusto de Lima Cruz
+
+# Explicação do sistema
+
 ## Dependencias
 
 - [Java Developer Kit (JDK) 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
