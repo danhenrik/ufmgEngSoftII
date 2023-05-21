@@ -161,7 +161,7 @@ public class Urna {
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
       return voteCandidate(role, voter, counter);
     } else {
-      print(candidate.name + " do " + candidate.party + ((candidate instanceof FederalDeputy)? "(" + ((FederalDeputy) candidate).state + ")": "") + "\n");
+      print(candidate.name + " do " + candidate.party + getCandidateState(candidate) + "\n");
       print("(1) Confirmar\n(2) Mudar voto");
       int confirm = readInt();
       if (confirm == 1) {
@@ -181,6 +181,13 @@ public class Urna {
       return currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
     }
     return null;
+  }
+
+  private static String getCandidateState(Candidate candidate) {
+    if (candidate instanceof FederalDeputy) {
+      return "(" + ((FederalDeputy) candidate).state + ")";
+    }
+    return "";
   }
 
   private static void voterMenu() {
