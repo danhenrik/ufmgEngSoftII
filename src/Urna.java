@@ -155,12 +155,7 @@ public class Urna {
   }
 
    private static boolean validVoteConfirmation(String role, Voter voter, Integer counter, int voteNumber) {
-    Candidate candidate = null;
-    if (role.equals("President")) {
-      candidate = currentElection.getPresidentByNumber(voteNumber);
-    } else if (role.equals("FederalDeputy")) {
-      candidate = currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
-    }
+    Candidate candidate = getCandidateByRole(role, voter, voteNumber);
     if (candidate == null) {
       print("Nenhum candidato encontrado com este número, tente novamente");
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
@@ -177,6 +172,15 @@ public class Urna {
       }
     }
     return true;
+  }
+
+  private static Candidate getCandidateByRole(String role, Voter voter, int voteNumber) {
+    if (role.equals("President")) {
+      return currentElection.getPresidentByNumber(voteNumber);
+    } else if (role.equals("FederalDeputy")) {
+      return currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
+    }
+    return null;
   }
 
   private static void voterMenu() {
