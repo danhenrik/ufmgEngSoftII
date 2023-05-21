@@ -104,51 +104,15 @@ public class Urna {
     if (vote.equals("ext")) {
       throw new StopTrap("Saindo da votação");
     } else if (vote.equals("br")) {
-      print("Você está votando branco\n");
-      print("(1) Confirmar\n(2) Mudar voto");
-      int confirm = readInt();
-      if (confirm == 1) {
-        voter.vote(0, currentElection, role, true);
-        return true;
-      } else {
-        return voteCandidate(role, voter, counter);
-      }
+      return blankVoteConfirmation(role, voter, counter);
     } else {
       try {
         int voteNumber = Integer.parseInt(vote);
         if (voteNumber == 0) {
-          print("Você está votando nulo\n");
-          print("(1) Confirmar\n(2) Mudar voto\n");
-          int confirm = readInt();
-          if (confirm == 1) {
-            voter.vote(0, currentElection, role, false);
-            return true;
-          } else {
-            return voteCandidate(role, voter, counter);
-          }
+          return nullVoteConfirmation(role, voter, counter);
         } else {
-          Candidate candidate = null;
-          if (role.equals("President")) {
-            candidate = currentElection.getPresidentByNumber(voteNumber);
-          } else if (role.equals("FederalDeputy")) {
-            candidate = currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
-          }
-          if (candidate == null) {
-            print("Nenhum candidato encontrado com este número, tente novamente");
-            print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
-            return voteCandidate(role, voter, counter);
-          } else {
-            print(candidate.name + " do " + candidate.party + ((candidate instanceof FederalDeputy)? "(" + ((FederalDeputy) candidate).state + ")": "") + "\n");
-            print("(1) Confirmar\n(2) Mudar voto");
-            int confirm = readInt();
-            if (confirm == 1) {
-              voter.vote(voteNumber, currentElection, role, false);
-              return true;
-            } else if (confirm == 2) {
-              return voteCandidate(role, voter, counter);
-            }
-          }
-          return true;        }
+          return validVoteConfirmation(role, voter, counter, voteNumber);
+        }
       } catch (Warning e) {
         print(e.getMessage());
         return voteCandidate(role, voter, counter);
@@ -162,6 +126,55 @@ public class Urna {
     }
   }
   
+  private static boolean blankVoteConfirmation(String role, Voter voter, Integer counter) {
+    print("Você está votando branco\n");
+    print("(1) Confirmar\n(2) Mudar voto");
+    int confirm = readInt();
+    if (confirm == 1) {
+      voter.vote(0, currentElection, role, true);
+      return true;
+    } else {
+      return voteCandidate(role, voter, counter);
+    }
+  }
+
+  private static boolean nullVoteConfirmation(String role, Voter voter, Integer counter) {
+    print("Você está votando nulo\n");
+    print("(1) Confirmar\n(2) Mudar voto\n");
+    int confirm = readInt();
+    if (confirm == 1) {
+      voter.vote(0, currentElection, role, false);
+      return true;
+    } else {
+      return voteCandidate(role, voter, counter);
+    }
+  }
+
+   private static boolean validVoteConfirmation(String role, Voter voter, Integer counter, int voteNumber) {
+    Candidate candidate = null;
+    if (role.equals("President")) {
+      candidate = currentElection.getPresidentByNumber(voteNumber);
+    } else if (role.equals("FederalDeputy")) {
+      candidate = currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
+    }
+    if (candidate == null) {
+      print("Nenhum candidato encontrado com este número, tente novamente");
+      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      return voteCandidate(role, voter, counter);
+    } else {
+      print(candidate.name + " do " + candidate.party + ((candidate instanceof FederalDeputy)? "(" + ((FederalDeputy) candidate).state + ")": "") + "\n");
+      print("(1) Confirmar\n(2) Mudar voto");
+      int confirm = readInt();
+      if (confirm == 1) {
+        voter.vote(voteNumber, currentElection, role, false);
+        return true;
+      } else if (confirm == 2) {
+        return voteCandidate(role, voter, counter);
+      }
+    }
+    return true;
+  }
+
   private static void voterMenu() {
     try {
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
