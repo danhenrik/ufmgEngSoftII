@@ -391,9 +391,7 @@ public class Urna {
       while (!back) {
         print("Escolha uma opção:");
         if (tseProfessional instanceof TSEEmployee) {
-          print("(1) Cadastrar candidato");
-          print("(2) Remover candidato");
-          print("(0) Sair");
+          printTSEEmployeeOptions();
           int command = readInt();
           switch (command) {
             case 1 -> addCandidate((TSEEmployee) tseProfessional);
@@ -402,10 +400,7 @@ public class Urna {
             default -> print("Comando inválido\n");
           }
         } else if (tseProfessional instanceof CertifiedProfessional) {
-          print("(1) Iniciar sessão");
-          print("(2) Finalizar sessão");
-          print("(3) Mostrar resultados");
-          print("(0) Sair");
+          printCertifiedProfessionalOptions();
           int command = readInt();
           switch (command) {
             case 1 -> startSession((CertifiedProfessional) tseProfessional);
@@ -421,6 +416,19 @@ public class Urna {
     } catch (Exception e) {
       print("Ocorreu um erro inesperado");
     }
+  }
+
+  private static void printTSEEmployeeOptions() {
+    print("(1) Cadastrar candidato");
+    print("(2) Remover candidato");
+    print("(0) Sair");
+  }
+
+  private static void printCertifiedProfessionalOptions() {
+    print("(1) Iniciar sessão");
+    print("(2) Finalizar sessão");
+    print("(3) Mostrar resultados");
+    print("(0) Sair");
   }
 
   private static void loadVoters() {
