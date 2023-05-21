@@ -391,30 +391,57 @@ public class Urna {
       while (!back) {
         print("Escolha uma opção:");
         if (tseProfessional instanceof TSEEmployee) {
-          printTSEEmployeeOptions();
-          int command = readInt();
-          switch (command) {
-            case 1 -> addCandidate((TSEEmployee) tseProfessional);
-            case 2 -> removeCandidate((TSEEmployee) tseProfessional);
-            case 0 -> back = true;
-            default -> print("Comando inválido\n");
-          }
+          back = tseEmployeeMenu((TSEEmployee) tseProfessional);
         } else if (tseProfessional instanceof CertifiedProfessional) {
-          printCertifiedProfessionalOptions();
-          int command = readInt();
-          switch (command) {
-            case 1 -> startSession((CertifiedProfessional) tseProfessional);
-            case 2 -> endSession((CertifiedProfessional) tseProfessional);
-            case 3 -> showResults((CertifiedProfessional) tseProfessional);
-            case 0 -> back = true;
-            default -> print("Comando inválido\n");
-          }
+          back = certifiedProfessionalMenu((CertifiedProfessional) tseProfessional);
+        } else {
+          back = true;
         }
       }
     } catch (Warning e) {
       print(e.getMessage());
     } catch (Exception e) {
       print("Ocorreu um erro inesperado");
+    }
+  }
+
+  private static boolean tseEmployeeMenu(TSEEmployee tseEmployee) {
+    printTSEEmployeeOptions();
+    int command = readInt();
+    switch (command) {
+      case 1:
+        addCandidate(tseEmployee);
+        return false;
+      case 2:
+        removeCandidate(tseEmployee);
+        return false;
+      case 0:
+        return true;
+      default:
+        print("Comando inválido\n");
+        return false;
+    }
+  }
+
+  private static boolean certifiedProfessionalMenu(CertifiedProfessional certifiedProfessional) {
+    printCertifiedProfessionalOptions();
+    int command = readInt();
+    
+    switch (command) {
+      case 1:
+        startSession(certifiedProfessional);
+        return false;
+      case 2:
+        endSession(certifiedProfessional);
+        return false;
+      case 3:
+        showResults(certifiedProfessional);
+        return false;
+      case 0:
+        return true;
+      default:
+        print("Comando inválido\n");
+        return false;
     }
   }
 
