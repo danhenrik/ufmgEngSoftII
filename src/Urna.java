@@ -92,13 +92,17 @@ public class Urna {
     return voteCandidate("FederalDeputy", voter, counter);
   }
 
-  private static boolean voteCandidate(String role, Voter voter, Integer counter) {
-    print("(ext) Desistir");
+  private static void printOptions(String exitOption, String role, Integer counter) {
+    print("(" + exitOption + ") Desistir");
     if (counter != null) {
       print("Digite o número do " + counter + "º candidato escolhido por você para " + role + ":");
     } else {
       print("Digite o número do candidato escolhido por você para " + role + ":");
     }
+  }
+
+  private static boolean voteCandidate(String role, Voter voter, Integer counter) {
+    printOptions("ext", role, counter);
     String vote = readString();
 
     if (vote.equals("ext")) {
