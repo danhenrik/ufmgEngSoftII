@@ -55,7 +55,7 @@ public class Urna {
           case 0 -> exit = true;
           default -> print("Comando inválido\n");
         }
-        print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+        printHeader();
       }
     } catch (Exception e) {
       print("Erro inesperado\n");
@@ -158,7 +158,7 @@ public class Urna {
     Candidate candidate = getCandidateByRole(role, voter, voteNumber);
     if (candidate == null) {
       print("Nenhum candidato encontrado com este número, tente novamente");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
       return voteCandidate(role, voter, counter);
     } else {
       print(candidate.name + " do " + candidate.party + getCandidateState(candidate) + "\n");
@@ -192,7 +192,7 @@ public class Urna {
 
   private static void voterMenu() {
     try {
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
       if (!currentElection.getStatus()) {
         print("A eleição ainda não foi inicializada, verifique com um funcionário do TSE");
         return;
@@ -201,24 +201,24 @@ public class Urna {
       Voter voter = getVoter();
       if (voter == null)
         return;
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
 
       print("Vamos começar!\n");
       print(
           "OBS:\n- A partir de agora caso você queira votar nulo você deve usar um numero composto de 0 (00 e 0000)\n- A partir de agora caso você queira votar branco você deve escrever br\n");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
 
       if (votePresident(voter))
         print("Voto para presidente registrado com sucesso");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
 
       if (voteFederalDeputy(voter, 1))
         print("Primeiro voto para deputado federal registrado com sucesso");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
 
       if (voteFederalDeputy(voter, 2))
         print("Segundo voto para deputado federal registrado com sucesso");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
 
     } catch (Warning e) {
       print(e.getMessage());
@@ -242,13 +242,13 @@ public class Urna {
       if (tseProfessional.password.equals(password))
         return tseProfessional;
       print("Senha inválida, tente novamente");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
     }
     return null;
   }
 
   private static void addCandidate(TSEEmployee tseProfessional) {
-    print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+    printHeader();
     print("Qual a categoria de seu candidato?\n");
     print("(1) Presidente");
     print("(2) Deputado Federal");
@@ -300,7 +300,7 @@ public class Urna {
   }
 
   private static void removeCandidate(TSEEmployee tseProfessional) {
-    print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+    printHeader();
     print("Qual a categoria de seu candidato?");
     print("(1) Presidente");
     print("(2) Deputado Federal");
@@ -352,7 +352,7 @@ public class Urna {
       String pwd = readString();
       tseProfessional.startSession(currentElection, pwd);
       print("Sessão inicializada");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
     } catch (Warning e) {
       print(e.getMessage());
     }
@@ -364,7 +364,7 @@ public class Urna {
       String pwd = readString();
       tseProfessional.endSession(currentElection, pwd);
       print("Sessão finalizada com sucesso");
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
     } catch (Warning e) {
       print(e.getMessage());
     }
@@ -375,7 +375,7 @@ public class Urna {
       print("Insira a senha da urna");
       String pwd = readString();
       print(tseProfessional.getFinalResult(currentElection, pwd));
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
     } catch (Warning e) {
       print(e.getMessage());
     }
@@ -386,7 +386,7 @@ public class Urna {
       TSEProfessional tseProfessional = getTSEProfessional();
       if (tseProfessional == null)
         return;
-      print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      printHeader();
       boolean back = false;
       while (!back) {
         print("Escolha uma opção:");
@@ -443,6 +443,10 @@ public class Urna {
         print("Comando inválido\n");
         return false;
     }
+  }
+  
+  private static void printHeader() {
+    print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
   }
 
   private static void printTSEEmployeeOptions() {
