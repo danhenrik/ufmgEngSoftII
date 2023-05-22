@@ -6,6 +6,14 @@
 - Victor Augusto de Lima Cruz
 
 # Explicação do sistema
+Consiste em um sistema com as funcionalidades básicas de uma urna eletrônica para votação em um
+candidato a presidente e dois candidatos a deputados federais. Inicialização da urna e o término da
+votação são feitos utilizando uma senha. Somente a pessoa credenciada pelo Tribunal Superior
+Eleitoral (TSE) tem a senha de início e término da eleição. Cada eleitor pode votar uma única vez,
+utilizando seu título de eleitor. Ao se apresentar para votar, o eleitor fornece o número de seu título.
+Pelo número do título, a urna eletrônica apresenta o nome do eleitor e, após confirmação dos dados,
+inicia a votação daquele eleitor. Alguns eleitores podem se abster da votação. O eleitor deve votar em 3
+candidatos: um presidente e dois deputados. O eleitor pode votar em branco ou nulo.
 
 ## Dependencias
 
@@ -59,3 +67,8 @@ Para uma execução teste podemos seguir o seguinte passo:
 - Escolher a opção 2 e inserir a senha da urna (`password`) para encerrar a votação
 - Escolher a opção 3 e inserir a senha da urna (`password`) para mostrar o resultado final da votação
 - Escolher a opção 0 duas vezes para encerrar a aplicação
+
+## Escolha das funções a serem refatoradas
+
+Após rodar a ferramenta em cima do lizard, foi feita a escolha das 3 funções mais complexas do
+ponto de vista da análise ciclomática.
