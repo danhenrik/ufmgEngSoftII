@@ -1,3 +1,5 @@
+package urna;
+
 public class Voter {
   protected final String electoralCard;
 

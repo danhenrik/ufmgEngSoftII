@@ -1,3 +1,5 @@
+package urna;
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
@@ -27,7 +29,6 @@ public class Urna {
     } catch (Exception e) {
       print("\nErro na leitura de entrada, digite novamente");
       return readString();
-      // return "";
     }
   }
 
@@ -37,7 +38,6 @@ public class Urna {
     } catch (Exception e) {
       print("\nErro na leitura de entrada, digite novamente");
       return readInt();
-      // return -1;
     }
   }
 
@@ -276,7 +276,7 @@ public class Urna {
       print("\nCadastrar o candidato deputado federal " + name + " Nº " + number + " do " + party + "(" + state + ")?");
       candidate = new FederalDeputy.Builder()
           .name(name)
-          .number(123)
+          .number(number)
           .party(party)
           .state(state)
           .build();
@@ -284,7 +284,7 @@ public class Urna {
       print("\nCadastrar o candidato a presidente " + name + " Nº " + number + " do " + party + "?");
       candidate = new President.Builder()
           .name(name)
-          .number(123)
+          .number(number)
           .party(party)
           .build();
     }
@@ -464,8 +464,7 @@ public class Urna {
 
   private static void loadVoters() {
     try {
-      File myObj = new File("voterLoad.txt");
-      Scanner myReader = new Scanner(myObj);
+      Scanner myReader = new Scanner(voterLoad.load);
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         var voterData = data.split(",");

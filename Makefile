@@ -1,12 +1,16 @@
+build: 
+	mvn clean package
+
+run: 
+	java -jar ./Target/Urna.jar
+
 full:
 	make build
 	make run
 
-build: 
-	cd "$(shell pwd)/src"  && javac Urna.java
+test:
+	mvn test
 
-run: 
-	cd "$(shell pwd)/src" && java Urna
-
-clean:
-	rm **/*.class
+e2e:
+	npm install
+	npm test 

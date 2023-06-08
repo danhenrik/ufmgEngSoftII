@@ -1,3 +1,4 @@
+package urna;
 public class Candidate {
   protected final String name;
 
