@@ -6,14 +6,11 @@
 - Victor Augusto de Lima Cruz
 
 # Explicação do sistema
-Consiste em um sistema com as funcionalidades básicas de uma urna eletrônica para votação em um
-candidato a presidente e dois candidatos a deputados federais. Inicialização da urna e o término da
-votação são feitos utilizando uma senha. Somente a pessoa credenciada pelo Tribunal Superior
-Eleitoral (TSE) tem a senha de início e término da eleição. Cada eleitor pode votar uma única vez,
-utilizando seu título de eleitor. Ao se apresentar para votar, o eleitor fornece o número de seu título.
-Pelo número do título, a urna eletrônica apresenta o nome do eleitor e, após confirmação dos dados,
-inicia a votação daquele eleitor. Alguns eleitores podem se abster da votação. O eleitor deve votar em 3
-candidatos: um presidente e dois deputados. O eleitor pode votar em branco ou nulo.
+É um sistema de linha de comando com as funcionalidades básicas de uma urna eletrônica para votação em um candidato a presidente e dois candidatos a deputados federais. A inicialização da urna e o término da votação são
+feitos utilizando uma senha. Somente a pessoa credenciada pelo Tribunal Superior Eleitoral (TSE) tem a senha de início e término da eleição. Cada eleitor pode votar uma única vez, utilizando seu título de eleitor. Ao se 
+apresentar para votar, o eleitor fornece o número de seu título. Pelo número do título, a urna eletrônica apresenta o nome do eleitor e, após confirmação dos dados, inicia a votação daquele eleitor. Alguns eleitores 
+podem se abster da votação. O eleitor deve votar em 3 candidatos: um presidente e dois deputados. O eleitor pode votar em branco ou nulo. Após o término da eleição, pode-se solicitar a urna eletrônica apresenta 
+estatísticas com o número de votos de cada candidato e as respectivas percentagens em relação ao total de votos válidos. A urna diz os candidatos eleitos e derrotados
 
 ## Dependencias
 
