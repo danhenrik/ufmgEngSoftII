@@ -3,11 +3,12 @@ const {prepareEnvironment} = require('@gmrchk/cli-testing-library');
 const {expect} = require('chai');
 
 describe('E2E Tests', () => {
-  after(() => process.exit(1));
+  after(() => process.exit(0));
 
   afterEach(() => {
     if (lastExpected != '') {
       console.log(`    Program didn't match the expected "${lastExpected}"`);
+      process.exit(1);
     }
   });
 
