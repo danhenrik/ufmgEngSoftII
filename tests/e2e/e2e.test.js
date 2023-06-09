@@ -18,8 +18,6 @@ describe('E2E Tests', () => {
       '-jar ./target/Urna.jar'
     );
 
-    console.log(typeof waitForText);
-
     await expectText('(2) Entrar (TSE)', waitForText);
     await sendInput('2', writeText, pressKey);
 
