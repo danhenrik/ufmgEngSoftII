@@ -1,2 +1,4 @@
 # ignore all files generated on build
-/bin
+/node_modules
+/target
+/.vscode

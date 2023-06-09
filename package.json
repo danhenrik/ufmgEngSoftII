@@ -1,0 +1,21 @@
+{
+  "name": "ufmgengsoftii",
+  "version": "1.0.0",
+  "description": "- André Luiz Morato Barreto\r - Daniel Henrique Toledo Santos\r - Lucas Mesquita Andrade\r - Victor Augusto de Lima Cruz",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test-t": "jest  --runInBand",
+    "test": "mocha tests/**/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@gmrchk/cli-testing-library": "^0.1.2",
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0"
+  }
+}
