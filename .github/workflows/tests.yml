@@ -53,5 +53,7 @@ jobs:
         cache: 'npm'
     - name: Install e2e test dependencies
       run: npm ci
+    - name: Build application
+      run: mvn package
     - name: Run e2e tests
       run: npm test
