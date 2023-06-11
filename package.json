@@ -7,7 +7,6 @@
     "test": "tests"
   },
   "scripts": {
-    "test-t": "jest  --runInBand",
     "test": "mocha tests/**/*.test.js"
   },
   "keywords": [],
